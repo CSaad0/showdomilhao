@@ -1,0 +1,387 @@
+{
+  "matematica": [
+    {
+      "question": "Qual o resultado de 8 + 9?",
+      "answers": ["15", "16", "17", "18"],
+      "correctAnswer": "17"
+    },
+    {
+      "question": "Quanto é 6 multiplicado por 8?",
+      "answers": ["42", "48", "54", "56"],
+      "correctAnswer": "48"
+    },
+    {
+      "question": "Qual número vem antes de 1.000?",
+      "answers": ["999", "1.001", "990", "909"],
+      "correctAnswer": "999"
+    },
+    {
+      "question": "Um dia tem quantas horas?",
+      "answers": ["12", "24", "36", "48"],
+      "correctAnswer": "24"
+    },
+    {
+      "question": "Qual é a metade de 100?",
+      "answers": ["25", "50", "75", "10"],
+      "correctAnswer": "50"
+    },
+    {
+      "question": "Se um produto custa R$ 80 e tem 10% de desconto, qual o valor do desconto?",
+      "answers": ["R$ 10", "R$ 8", "R$ 5", "R$ 1"],
+      "correctAnswer": "R$ 8"
+    },
+    {
+      "question": "Quantos lados tem um hexágono?",
+      "answers": ["5", "6", "7", "8"],
+      "correctAnswer": "6"
+    },
+    {
+      "question": "Qual é a raiz quadrada de 144?",
+      "answers": ["10", "11", "12", "13"],
+      "correctAnswer": "12"
+    },
+    {
+      "question": "Qual o resultado da expressão (5 + 3) * 2?",
+      "answers": ["11", "13", "16", "10"],
+      "correctAnswer": "16"
+    },
+    {
+      "question": "Um ângulo de 90 graus é chamado de:",
+      "answers": ["Agudo", "Obtuso", "Reto", "Raso"],
+      "correctAnswer": "Reto"
+    },
+    {
+      "question": "Se uma viagem de 300 km é feita em 3 horas, qual a velocidade média?",
+      "answers": ["80 km/h", "90 km/h", "100 km/h", "120 km/h"],
+      "correctAnswer": "100 km/h"
+    },
+    {
+      "question": "O número romano 'L' representa qual número arábico?",
+      "answers": ["10", "50", "100", "500"],
+      "correctAnswer": "50"
+    },
+    {
+      "question": "Quanto é 2 elevado à quinta potência (2⁵)?",
+      "answers": ["10", "16", "25", "32"],
+      "correctAnswer": "32"
+    },
+    {
+      "question": "Um círculo tem quantos graus?",
+      "answers": ["90°", "180°", "270°", "360°"],
+      "correctAnswer": "360°"
+    },
+    {
+      "question": "Qual é 20% de 500?",
+      "answers": ["50", "100", "20", "250"],
+      "correctAnswer": "100"
+    }
+  ],
+  "historia": [
+    {
+      "question": "Quem é considerado o 'Pai da Aviação'?",
+      "answers": ["Santos Dumont", "Irmãos Wright", "Leonardo da Vinci", "Graham Bell"],
+      "correctAnswer": "Santos Dumont"
+    },
+    {
+      "question": "Em que ano o homem pisou na Lua pela primeira vez?",
+      "answers": ["1959", "1969", "1979", "1989"],
+      "correctAnswer": "1969"
+    },
+    {
+      "question": "Qual era o principal deus da mitologia grega?",
+      "answers": ["Apolo", "Poseidon", "Hades", "Zeus"],
+      "correctAnswer": "Zeus"
+    },
+    {
+      "question": "A Segunda Guerra Mundial terminou em que ano?",
+      "answers": ["1942", "1945", "1950", "1939"],
+      "correctAnswer": "1945"
+    },
+    {
+      "question": "Quem foi o primeiro presidente do Brasil?",
+      "answers": ["Dom Pedro I", "Getúlio Vargas", "Marechal Deodoro", "Juscelino Kubitschek"],
+      "correctAnswer": "Marechal Deodoro"
+    },
+    {
+      "question": "Qual civilização construiu a cidade de Machu Picchu?",
+      "answers": ["Maias", "Astecas", "Incas", "Egípcios"],
+      "correctAnswer": "Incas"
+    },
+    {
+      "question": "A 'Guerra Fria' foi uma disputa ideológica entre quais duas superpotências?",
+      "answers": ["EUA e China", "Reino Unido e Alemanha", "EUA e União Soviética", "Japão e China"],
+      "correctAnswer": "EUA e União Soviética"
+    },
+    {
+      "question": "Qual presidente brasileiro ficou conhecido por construir Brasília?",
+      "answers": ["Jânio Quadros", "João Goulart", "Juscelino Kubitschek", "Getúlio Vargas"],
+      "correctAnswer": "Juscelino Kubitschek"
+    },
+    {
+      "question": "Qual destes eventos marcou o início da Idade Média?",
+      "answers": ["Queda do Império Romano", "Revolução Francesa", "Descobrimento da América", "Guerra dos Cem Anos"],
+      "correctAnswer": "Queda do Império Romano"
+    },
+    {
+      "question": "Quem foi o líder da Revolta da Vacina no Rio de Janeiro?",
+      "answers": ["Tiradentes", "Zumbi dos Palmares", "Antônio Conselheiro", "Oswaldo Cruz"],
+      "correctAnswer": "Oswaldo Cruz"
+    },
+    {
+      "question": "O Muro de Berlim dividia qual cidade?",
+      "answers": ["Moscou", "Varsóvia", "Berlim", "Viena"],
+      "correctAnswer": "Berlim"
+    },
+    {
+      "question": "Qual o nome do movimento que lutava pelo fim da ditadura militar no Brasil pedindo eleições diretas?",
+      "answers": ["Tropicalismo", "Diretas Já", "Caras-Pintadas", "Canudos"],
+      "correctAnswer": "Diretas Já"
+    },
+    {
+      "question": "Cleópatra foi a última rainha de qual civilização antiga?",
+      "answers": ["Grécia", "Roma", "Pérsia", "Egito"],
+      "correctAnswer": "Egito"
+    },
+    {
+      "question": "Qual foi a primeira constituição do Brasil?",
+      "answers": ["1824", "1891", "1934", "1988"],
+      "correctAnswer": "1824"
+    },
+    {
+      "question": "O período conhecido como 'Renascimento' floresceu em qual continente?",
+      "answers": ["Ásia", "África", "América", "Europa"],
+      "correctAnswer": "Europa"
+    }
+  ],
+  "geografia": [
+    {
+      "question": "Qual é a capital da Bahia?",
+      "answers": ["Recife", "Fortaleza", "Salvador", "Maceió"],
+      "correctAnswer": "Salvador"
+    },
+    {
+      "question": "O Cristo Redentor está localizado em qual cidade?",
+      "answers": ["São Paulo", "Belo Horizonte", "Rio de Janeiro", "Brasília"],
+      "correctAnswer": "Rio de Janeiro"
+    },
+    {
+      "question": "Qual desses países NÃO faz fronteira com o Brasil?",
+      "answers": ["Argentina", "Colômbia", "Uruguai", "Chile"],
+      "correctAnswer": "Chile"
+    },
+    {
+      "question": "Qual é o maior estado do Brasil em área territorial?",
+      "answers": ["Minas Gerais", "Bahia", "Amazonas", "Mato Grosso"],
+      "correctAnswer": "Amazonas"
+    },
+    {
+      "question": "Em qual região do Brasil se localiza o Pantanal?",
+      "answers": ["Norte", "Nordeste", "Sul", "Centro-Oeste"],
+      "correctAnswer": "Centro-Oeste"
+    },
+    {
+      "question": "A Torre Eiffel é um famoso ponto turístico de qual cidade?",
+      "answers": ["Londres", "Roma", "Paris", "Berlim"],
+      "correctAnswer": "Paris"
+    },
+    {
+      "question": "Qual o nome do fenômeno que causa o aquecimento das águas do Oceano Pacífico?",
+      "answers": ["La Niña", "El Niño", "Tsunami", "Furacão"],
+      "correctAnswer": "El Niño"
+    },
+    {
+      "question": "Qual o continente mais populoso do mundo?",
+      "answers": ["África", "Europa", "América", "Ásia"],
+      "correctAnswer": "Ásia"
+    },
+    {
+      "question": "As Cataratas do Iguaçu estão localizadas na fronteira do Brasil com qual país?",
+      "answers": ["Paraguai", "Uruguai", "Argentina", "Bolívia"],
+      "correctAnswer": "Argentina"
+    },
+    {
+      "question": "Qual é o maior deserto quente do mundo?",
+      "answers": ["Atacama", "Gobi", "Saara", "Kalahari"],
+      "correctAnswer": "Saara"
+    },
+    {
+      "question": "Qual país é conhecido como 'Terra do Sol Nascente'?",
+      "answers": ["China", "Japão", "Índia", "Coreia do Sul"],
+      "correctAnswer": "Japão"
+    },
+    {
+      "question": "O Rio São Francisco, no Brasil, é conhecido como o rio da:",
+      "answers": ["Unidade Nacional", "Discórdia", "Felicidade", "Tristeza"],
+      "correctAnswer": "Unidade Nacional"
+    },
+    {
+      "question": "Qual o nome da camada de gases que envolve a Terra?",
+      "answers": ["Litosfera", "Hidrosfera", "Atmosfera", "Biosfera"],
+      "correctAnswer": "Atmosfera"
+    },
+    {
+      "question": "Qual a montanha mais alta do mundo?",
+      "answers": ["K2", "Monte Everest", "Aconcágua", "Mont Blanc"],
+      "correctAnswer": "Monte Everest"
+    },
+    {
+      "question": "Qual o oceano que banha a costa leste do Brasil?",
+      "answers": ["Pacífico", "Índico", "Ártico", "Atlântico"],
+      "correctAnswer": "Atlântico"
+    }
+  ],
+  "portugues": [
+    {
+      "question": "Qual o coletivo de 'peixes'?",
+      "answers": ["Manada", "Cardume", "Alcateia", "Enxame"],
+      "correctAnswer": "Cardume"
+    },
+    {
+      "question": "Qual palavra NÃO é um sinônimo de 'casa'?",
+      "answers": ["Lar", "Moradia", "Residência", "Prédio"],
+      "correctAnswer": "Prédio"
+    },
+    {
+      "question": "Na frase 'O gato dorme', qual é o verbo?",
+      "answers": ["O", "gato", "dorme", "nenhum"],
+      "correctAnswer": "dorme"
+    },
+    {
+      "question": "Qual o antônimo de 'feliz'?",
+      "answers": ["Alegre", "Contente", "Triste", "Sorridente"],
+      "correctAnswer": "Triste"
+    },
+    {
+      "question": "Qual dessas palavras está escrita corretamente?",
+      "answers": ["Geito", "J jeito", "Jeitto", "Geitto"],
+      "correctAnswer": "J jeito"
+    },
+    {
+      "question": "A palavra 'menas' existe na língua portuguesa?",
+      "answers": ["Sim", "Não", "Apenas no plural", "Apenas em poesias"],
+      "correctAnswer": "Não"
+    },
+    {
+      "question": "Quem escreveu 'Dom Casmurro'?",
+      "answers": ["José de Alencar", "Machado de Assis", "Carlos Drummond de Andrade", "Monteiro Lobato"],
+      "correctAnswer": "Machado de Assis"
+    },
+    {
+      "question": "'Bela' é um exemplo de qual classe de palavra?",
+      "answers": ["Substantivo", "Verbo", "Adjetivo", "Advérbio"],
+      "correctAnswer": "Adjetivo"
+    },
+    {
+      "question": "Qual a grafia correta para o som de 'ss' em 'paçoca'?",
+      "answers": ["S", "SS", "Ç", "C"],
+      "correctAnswer": "Ç"
+    },
+    {
+      "question": "Quantas letras tem o alfabeto oficial da língua portuguesa?",
+      "answers": ["23", "24", "25", "26"],
+      "correctAnswer": "26"
+    },
+    {
+      "question": "A frase 'Choveu muito ontem' tem qual tipo de sujeito?",
+      "answers": ["Simples", "Composto", "Oculto", "Inexistente"],
+      "correctAnswer": "Inexistente"
+    },
+    {
+      "question": "O que significa a sigla 'CEP'?",
+      "answers": ["Código de Endereçamento Postal", "Cadastro de Entidade Pública", "Central de Encomendas Pessoais", "Controle de Entrega Padrão"],
+      "correctAnswer": "Código de Endereçamento Postal"
+    },
+    {
+      "question": "Qual figura de linguagem está presente em 'O Sol sorria para mim'?",
+      "answers": ["Metáfora", "Hipérbole", "Personificação", "Ironia"],
+      "correctAnswer": "Personificação"
+    },
+    {
+      "question": "Qual o plural de 'cidadão'?",
+      "answers": ["Cidadãos", "Cidadões", "Cidadães", "Cidadãs"],
+      "correctAnswer": "Cidadãos"
+    },
+    {
+      "question": "A palavra 'através' deve ser usada para indicar:",
+      "answers": ["Posse", "Movimento por dentro de algo", "Oposição", "Tempo"],
+      "correctAnswer": "Movimento por dentro de algo"
+    }
+  ],
+  "artes": [
+    {
+      "question": "Quem é o pintor da obra 'Abaporu'?",
+      "answers": ["Candido Portinari", "Tarsila do Amaral", "Di Cavalcanti", "Anita Malfatti"],
+      "correctAnswer": "Tarsila do Amaral"
+    },
+    {
+      "question": "Misturando as cores azul e amarelo, obtemos qual cor?",
+      "answers": ["Roxo", "Laranja", "Verde", "Marrom"],
+      "correctAnswer": "Verde"
+    },
+    {
+      "question": "Qual destes instrumentos é de sopro?",
+      "answers": ["Violino", "Piano", "Flauta", "Bateria"],
+      "correctAnswer": "Flauta"
+    },
+    {
+      "question": "O samba é um gênero musical originário de qual país?",
+      "answers": ["Portugal", "Angola", "Espanha", "Brasil"],
+      "correctAnswer": "Brasil"
+    },
+    {
+      "question": "Quem esculpiu a famosa estátua de 'Davi'?",
+      "answers": ["Leonardo da Vinci", "Donatello", "Rafael Sanzio", "Michelangelo"],
+      "correctAnswer": "Michelangelo"
+    },
+    {
+      "question": "Qual arte marcial brasileira combina dança e luta?",
+      "answers": ["Jiu-Jitsu", "Judô", "Capoeira", "Karatê"],
+      "correctAnswer": "Capoeira"
+    },
+    {
+      "question": "Em qual cidade fica o famoso museu do Louvre?",
+      "answers": ["Roma", "Londres", "Paris", "Madri"],
+      "correctAnswer": "Paris"
+    },
+    {
+      "question": "Qual artista ficou famoso por suas pinturas de latas de sopa Campbell?",
+      "answers": ["Pablo Picasso", "Andy Warhol", "Salvador Dalí", "Vincent van Gogh"],
+      "correctAnswer": "Andy Warhol"
+    },
+    {
+      "question": "O 'frevo' é uma dança típica de qual estado brasileiro?",
+      "answers": ["Bahia", "Rio de Janeiro", "Pernambuco", "Ceará"],
+      "correctAnswer": "Pernambuco"
+    },
+    {
+      "question": "Qual é o nome da arte japonesa de dobrar papéis?",
+      "answers": ["Kirigami", "Origami", "Ikebana", "Sumô"],
+      "correctAnswer": "Origami"
+    },
+    {
+      "question": "Quem foi o arquiteto responsável por grande parte dos projetos de Brasília?",
+      "answers": ["Aleijadinho", "Oscar Niemeyer", "Ruy Ohtake", "Lina Bo Bardi"],
+      "correctAnswer": "Oscar Niemeyer"
+    },
+    {
+      "question": "A 'Turma da Mônica' foi criada por qual cartunista brasileiro?",
+      "answers": ["Ziraldo", "Laerte", "Angeli", "Mauricio de Sousa"],
+      "correctAnswer": "Mauricio de Sousa"
+    },
+    {
+      "question": "Qual movimento artístico é conhecido por suas representações de sonhos e do inconsciente?",
+      "answers": ["Cubismo", "Impressionismo", "Surrealismo", "Realismo"],
+      "correctAnswer": "Surrealismo"
+    },
+    {
+      "question": "Qual compositor é conhecido como o 'Rei do Baião'?",
+      "answers": ["Tom Jobim", "Vinicius de Moraes", "Luiz Gonzaga", "Cartola"],
+      "correctAnswer": "Luiz Gonzaga"
+    },
+    {
+      "question": "O Oscar é o prêmio mais famoso de qual forma de arte?",
+      "answers": ["Música", "Teatro", "Pintura", "Cinema"],
+      "correctAnswer": "Cinema"
+    }
+  ]
+}
