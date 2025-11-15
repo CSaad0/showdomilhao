@@ -1,0 +1,220 @@
+/* CSS Base (igual ao anterior) */
+        body { 
+            font-family: 'Oswald', sans-serif; 
+            background: radial-gradient(ellipse at center, #1e3a8a 0%, #0c1a54 70%); 
+            color: #ffffff; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            text-align: center; 
+            padding: 10px; 
+        }
+        
+        #start-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #0c1a54; display: flex; justify-content: center; align-items: center; z-index: 100; cursor: pointer; transition: opacity 0.5s; }
+        #start-overlay p { font-size: 2em; color: #facc15; animation: pulse 2s infinite; text-shadow: 0 0 10px #facc15; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        #mute-music-btn { position: fixed; top: 15px; right: 15px; background-color: rgba(255, 255, 255, 0.2); color: white; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 1.5em; cursor: pointer; z-index: 50; transition: background-color 0.3s; }
+        #mute-music-btn:hover { background-color: rgba(255, 255, 255, 0.4); }
+        #game-container { background-color: #1e3a8a; border-radius: 20px; padding: 20px; width: 100%; max-width: 900px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); visibility: hidden; opacity: 0; transition: opacity 0.5s; border: 2px solid rgba(255, 255, 255, 0.1); }
+        #start-screen { display: block; }
+        #game-screen { display: none; }
+        
+        h1 { 
+            font-size: 3em; 
+            color: #facc15; 
+            margin-bottom: 10px; 
+            text-shadow: 0 0 8px #f59e0b, 0 0 15px #facc15; 
+        }
+        
+        #start-screen p { font-size: 1.2em; margin-bottom: 30px; font-weight: 400; }
+        #subject-selection-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
+        
+        .subject-btn { 
+            background-color: #facc15; 
+            color: #0c1a54; 
+            font-size: 1.2em; 
+            font-weight: 700; 
+            padding: 20px 15px; 
+            border: none; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s, top 0.1s; 
+            box-shadow: 0 5px #f59e0b; 
+            position: relative;
+            top: 0;
+        }
+        .subject-btn:hover { 
+            transform: scale(1.05) translateY(-3px); 
+            background-color: #f59e0b; 
+            box-shadow: 0 7px #f59e0b;
+        }
+        .subject-btn:active {
+            top: 3px; 
+            box-shadow: 0 2px #f59e0b;
+        }
+        
+        .subject-btn[data-subject="misto"] { background-color: #7c3aed; color: white; box-shadow: 0 5px #5b21b6; }
+        .subject-btn[data-subject="misto"]:hover { background-color: #9d5dff; transform: scale(1.05) translateY(-3px); box-shadow: 0 7px #5b21b6; }
+        .subject-btn[data-subject="misto"]:active { top: 3px; box-shadow: 0 2px #5b21b6; }
+
+        #main-content-area { display: flex; gap: 20px; flex-wrap: wrap; }
+        #game-panel { flex: 2; display: flex; flex-direction: column; min-width: 300px; }
+        #prize-ladder-panel { flex: 1; background-color: rgba(0,0,0,0.2); border-radius: 10px; padding: 15px; min-width: 200px; }
+        #prize-ladder-panel h2 { margin-top: 0; color: #facc15; font-size: 1.5em; text-shadow: 0 0 5px #f59e0b; }
+        #prize-ladder { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column-reverse; }
+        .prize-item { background-color: #1e40af; padding: 8px; margin-bottom: 5px; border-radius: 5px; text-align: center; font-weight: bold; font-size: 1.1em; transition: all 0.3s ease; }
+        .prize-item.achieved-prize { background-color: #22c55e; color: #ffffff; }
+        
+        .prize-item.current-prize { 
+            background-color: #f59e0b; 
+            color: #0c1a54; 
+            transform: scale(1.1); 
+            box-shadow: 0 0 15px #f59e0b, 0 0 25px #facc15; 
+        }
+        
+        #status-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; background-color: rgba(0,0,0,0.2); padding: 10px; border-radius: 10px; flex-wrap: wrap; gap: 10px; }
+        #score, #question-counter { font-size: 1.1em; font-weight: bold; }
+        #question-container { background-color: #2563eb; padding: 20px; border-radius: 10px; min-height: 100px; display: flex; justify-content: center; align-items: center; font-size: 1.6em; margin-bottom: 15px; font-weight: 400; line-height: 1.3; }
+        #answers-container { display: grid; grid-template-columns: 1fr; gap: 10px; flex-grow: 1; }
+        
+        .answer-btn { 
+            background-color: #1e40af; 
+            color: white; 
+            padding: 15px; 
+            border-radius: 10px; 
+            border: 2px solid #3b82f6; 
+            font-size: 1.2em; 
+            font-family: 'Oswald', sans-serif; 
+            font-weight: 400;
+            cursor: pointer; 
+            transition: all 0.2s ease;
+            text-align: left;
+            box-shadow: 0 4px #1a327a; 
+            position: relative; 
+            top: 0;
+        }
+        .answer-btn:hover:not(:disabled) { 
+            background-color: #3b82f6; 
+            transform: scale(1.02) translateY(-2px); 
+            box-shadow: 0 6px #1a327a;
+        }
+        
+        .answer-btn:active:not(:disabled) {
+            top: 2px; 
+            box-shadow: 0 2px #1a327a; 
+        }
+        
+        .answer-btn:disabled { 
+            cursor: not-allowed; 
+            opacity: 0.7; 
+        } 
+        
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); } 20%, 40%, 60%, 80% { transform: translateX(10px); } }
+        @keyframes pulseCorrect { 0% { transform: scale(1); box-shadow: 0 0 5px #22c55e, 0 4px #1a327a; } 50% { transform: scale(1.05); box-shadow: 0 0 20px #22c55e, 0 4px #1a327a; } 100% { transform: scale(1); box-shadow: 0 0 5px #22c55e, 0 4px #1a327a; } }
+
+        .answer-btn.correct { 
+            background-color: #22c55e; 
+            border-color: #16a34a; 
+            animation: pulseCorrect 0.5s ease-out; 
+            box-shadow: 0 4px #166534; 
+        }
+        .answer-btn.incorrect { 
+            background-color: #ef4444; 
+            border-color: #dc2626; 
+            animation: shake 0.5s ease-in-out;
+            box-shadow: 0 4px #b91c1c; 
+        }
+        
+        #feedback-container { margin-top: 15px; font-size: 1.4em; font-weight: bold; min-height: 40px; }
+        #next-button { background-color: #facc15; color: #0c1a54; font-size: 1.2em; padding: 10px 25px; border: none; border-radius: 10px; cursor: pointer; margin-top: 10px; display: none; font-family: 'Oswald', sans-serif; font-weight: 700; }
+        #toggle-audio-button { background: none; border: none; font-size: 1.8em; cursor: pointer; color: white; }
+        #help-buttons-container { display: flex; justify-content: center; gap: 15px; margin-top: 15px; }
+        .help-btn { background-color: #7c3aed; color: white; border: none; padding: 10px 15px; font-size: 1em; font-weight: bold; border-radius: 8px; cursor: pointer; transition: background-color 0.2s; min-width: 120px; }
+        .help-btn:hover:not(:disabled) { background-color: #9d5dff; }
+        .help-btn:disabled { background-color: #585858; color: #ababab; cursor: not-allowed; }
+        #shop-btn, #ranking-btn { background-color: #22c55e; color: white; font-size: 1.2em; font-weight: bold; padding: 15px; border: none; border-radius: 10px; cursor: pointer; transition: background-color 0.2s; margin-top: 20px; }
+        #ranking-btn { background-color: #7c3aed; margin-top: 10px; }
+        #shop-btn:hover { background-color: #16a34a; }
+        #ranking-btn:hover { background-color: #9d5dff; }
+        #coin-balance { font-size: 1.2em; font-weight: bold; color: #facc15; display: flex; align-items: center; gap: 5px; }
+        #shop-modal, #ranking-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); display: none; justify-content: center; align-items: center; z-index: 110; }
+        #shop-container, #ranking-container { background-color: #1e3a8a; padding: 30px; border-radius: 15px; box-shadow: 0 0 25px rgba(250, 204, 21, 0.5); width: 90%; max-width: 500px; text-align: center; border: 2px solid #facc15; }
+        #shop-container h2, #ranking-container h2 { color: #facc15; margin-top: 0; }
+        .shop-item { display: flex; justify-content: space-between; align-items: center; background-color: #0c1a54; padding: 15px; border-radius: 8px; margin-bottom: 10px; }
+        .shop-item-name { font-size: 1.2em; }
+        .buy-btn { background-color: #facc15; color: #0c1a54; font-weight: bold; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; transition: background-color 0.2s; }
+        .buy-btn:hover { background-color: #f59e0b; }
+        #close-shop-btn, #close-ranking-btn { background-color: #ef4444; color: white; margin-top: 20px; }
+        #shop-coin-balance { margin-bottom: 20px; font-size: 1.2em; }
+        #player-name-container { margin: 20px 0; }
+        #player-name-input { padding: 12px; font-size: 1.1em; border-radius: 8px; border: 2px solid #3b82f6; background-color: #0c1a54; color: white; width: 80%; max-width: 400px; text-align: center; }
+        #player-name-input::placeholder { color: #ccc; }
+        #ranking-list { list-style: none; padding: 0; max-height: 300px; overflow-y: auto; text-align: left; }
+        .ranking-item { display: flex; justify-content: space-between; padding: 10px; background-color: #0c1a54; border-radius: 5px; margin-bottom: 8px; font-size: 1.1em; }
+        .ranking-item span:first-child { font-weight: bold; }
+        .ranking-item span:last-child { color: #facc15; }
+        #timer-container { position: relative; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
+        #timer-visual { position: absolute; width: 100%; height: 100%; border-radius: 50%; background: conic-gradient(#facc15 calc(var(--progress, 100) * 1%), #3b82f6 0); transition: background 0.3s ease-out; }
+        #timer-container.danger #timer-visual { background: conic-gradient(#ef4444 calc(var(--progress, 100) * 1%), #3b82f6 0); }
+        #timer-text { font-size: 1.2em; font-weight: bold; color: #ffffff; z-index: 1; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUpFadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        .slide-up-fade-in { animation: slideUpFadeIn 0.5s ease-out forwards; opacity: 0; }
+        #decision-buttons-container { display: flex; justify-content: center; gap: 20px; margin-top: 10px; }
+        #stop-btn, #continue-btn { font-size: 1.2em; font-weight: bold; padding: 10px 25px; border: none; border-radius: 10px; cursor: pointer; color: white; transition: background-color 0.2s; }
+        #stop-btn { background-color: #ef4444; }
+        #stop-btn:hover { background-color: #dc2626; }
+        #continue-btn { background-color: #22c55e; }
+        #continue-btn:hover { background-color: #16a34a; }
+        @media (max-width: 768px) { #main-content-area { flex-direction: column-reverse; } #question-container { font-size: 1.2em; min-height: 80px; } .answer-btn { font-size: 1em; padding: 12px; } }
+      /* ================ COLE ESTE BLOCO NO FINAL DO SEU CSS ================ */
+
+/* Estiliza os novos inputs de e-mail e senha */
+#auth-forms input[type="email"],
+#auth-forms input[type="password"] {
+    padding: 12px;
+    font-size: 1.1em;
+    border-radius: 8px;
+    border: 2px solid #3b82f6;
+    background-color: #0c1a54;
+    color: white;
+    font-family: 'Oswald', sans-serif; /* Garante a fonte correta */
+    margin: 5px 0; /* Espaçamento */
+}
+
+#auth-forms input::placeholder {
+    color: #ccc;
+}
+
+/* Ajusta os botões de login/criar */
+#auth-forms .subject-btn {
+    padding: 12px 20px; /* Padding menor que os botões de matéria */
+    font-size: 1.1em;   /* Fonte um pouco menor */
+    margin-left: 10px;
+    vertical-align: middle; /* Alinha o botão com os inputs */
+}
+
+/* Organiza os formulários de login/cadastro */
+#auth-forms > div {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebrar a linha em telas pequenas */
+    justify-content: center;
+    align-items: center;
+    gap: 5px 10px; /* Espaçamento */
+}
+
+#auth-forms h3 {
+    width: 100%; /* Faz o "Criar Conta" / "Fazer Login" ocupar a linha toda */
+    color: #facc15; /* Cor amarela */
+    margin-bottom: 10px;
+}
+
+/* Estiliza a linha horizontal */
+#auth-forms hr {
+    border: none;
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    margin: 25px 0;
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head><title>Meu Jogo</title>
+</head>
+<link rel="stylesheet" href="style.css">
+<body>
+    <h1>Meu Jogo</h1>
+    
+    <div id="formularios-login">
+        <h3>Criar Conta</h3>
+        <input type="email" id="criar-email" placeholder="E-mail">
+        <input type="password" id="criar-senha" placeholder="Senha">
+        <button id="btn-criar-conta">Criar</button>
+        
+        <h3>Fazer Login</h3>
+        <input type="email" id="login-email" placeholder="E-mail">
+        <input type="password" id="login-senha" placeholder="Senha">
+        <button id="btn-login">Entrar</button>
+    </div>
+
+    <div id="info-usuario" style="display:none;">
+        <h4 id="user-info"></h4>
+        <button id="btn-logout">Sair</button>
+    </div>
+
+    <div id="secao-jogo" style="display:none;">
+        <h2>Clique para marcar pontos!</h2>
+        <button id="btn-jogar">Fiz 100 Pontos</button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+
+    <script>
+        // ======= COLE SEU firebaseConfig AQUI ========
+        const firebaseConfig = {
+            apiKey: "AIza...",
+            authDomain: "seu-jogo.firebaseapp.com",
+            // ...etc
+        };
+        // =============================================
+
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+
+        // --- Variáveis Globais ---
+        let usuarioAtual = null;
+
+        // --- Referências de Elementos ---
+        const formLogin = document.getElementById("formularios-login");
+        const infoUsuario = document.getElementById("info-usuario");
+        const secaoJogo = document.getElementById("secao-jogo");
+        const userInfo = document.getElementById("user-info");
+
+        // --- Funções de Autenticação ---
+        function criarConta() {
+            const email = document.getElementById("criar-email").value;
+            const senha = document.getElementById("criar-senha").value;
+            auth.createUserWithEmailAndPassword(email, senha)
+                .then(() => alert("Conta criada!"))
+                .catch(e => alert("Erro: " + e.message));
+        }
+
+        function fazerLogin() {
+            const email = document.getElementById("login-email").value;
+            const senha = document.getElementById("login-senha").value;
+            auth.signInWithEmailAndPassword(email, senha)
+                .then(() => alert("Login feito!"))
+                .catch(e => alert("Erro: " + e.message));
+        }
+
+        function fazerLogout() {
+            auth.signOut();
+        }
+
+        // --- Função de Salvar Pontuação ---
+        function salvarPontuacao(pontos) {
+            if (usuarioAtual) {
+                db.collection("ranking").add({
+                    nome: usuarioAtual.email, // Usa o e-mail como nome
+                    userId: usuarioAtual.uid,   // ID único do usuário
+                    pontos: pontos,
+                    timestamp: new Date()
+                })
+                .then(() => alert("Pontuação salva!"))
+                .catch(e => console.error("Erro ao salvar:", e));
+            } else {
+                alert("Você precisa estar logado para salvar!");
+            }
+        }
+        
+        // --- Gerenciador de Estado (Ouvinte de Login) ---
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                // Usuário está logado
+                usuarioAtual = user;
+                formLogin.style.display = "none";
+                infoUsuario.style.display = "block";
+                secaoJogo.style.display = "block";
+                userInfo.innerText = `Logado como: ${user.email}`;
+            } else {
+                // Usuário está deslogado
+                usuarioAtual = null;
+                formLogin.style.display = "block";
+                infoUsuario.style.display = "none";
+                secaoJogo.style.display = "none";
+            }
+        });
+
+        // --- Ligar Botões às Funções ---
+        document.getElementById("btn-criar-conta").addEventListener("click", criarConta);
+        document.getElementById("btn-login").addEventListener("click", fazerLogin);
+        document.getElementById("btn-logout").addEventListener("click", fazerLogout);
+        
+        // Exemplo de como salvar a pontuação
+        document.getElementById("btn-jogar").addEventListener("click", () => {
+            const pontosGanhos = 100; // Calcule isso no seu jogo
+            salvarPontuacao(pontosGanhos);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Ranking ao Vivo</title>
+    <style>
+        body { background-color: #222; color: white; font-family: Arial; }
+        h1 { font-size: 4rem; color: #FFD700; text-align: center; }
+        #lista-ranking { list-style: none; padding: 0; font-size: 2rem; }
+        #lista-ranking li { background: #333; margin: 10px; padding: 15px; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <h1>RANKING EM TEMPO REAL</h1>
+    <ul id="lista-ranking">
+        <li>Carregando...</li>
+    </ul>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    
+    <script>
+        // ======= COLE O MESMO firebaseConfig AQUI ========
+        const firebaseConfig = {
+            apiKey: "AIza...",
+            authDomain: "seu-jogo.firebaseapp.com",
+            // ...etc
+        };
+        // =============================================
+
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // --- Função de Ler o Ranking ---
+        function carregarRankingParaTV() {
+            const rankingElement = document.getElementById("lista-ranking");
+
+            db.collection("ranking")
+              .orderBy("pontos", "desc") // Ordena do maior para o menor
+              .limit(10) // Pega só os 10 primeiros
+              .onSnapshot((querySnapshot) => { // A MÁGICA DO TEMPO REAL
+                  
+                  console.log("Ranking atualizado!");
+                  
+                  // Limpa o ranking antigo
+                  rankingElement.innerHTML = "";
+                  
+                  if (querySnapshot.empty) {
+                      rankingElement.innerHTML = "<li>Aguardando jogadores...</li>";
+                      return;
+                  }
+
+                  // Adiciona os novos itens
+                  querySnapshot.forEach((doc) => {
+                      const dados = doc.data();
+                      const item = document.createElement("li");
+                      item.textContent = `${dados.nome}: ${dados.pontos} pontos`;
+                      rankingElement.appendChild(item);
+                  });
+              });
+        }
+
+        // Inicia o carregamento
+        carregarRankingParaTV();
+    </script>
+</body>
+</html>
