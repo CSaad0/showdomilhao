@@ -171,10 +171,7 @@
         #continue-btn:hover { background-color: #16a34a; }
         @media (max-width: 768px) { #main-content-area { flex-direction: column-reverse; } #question-container { font-size: 1.2em; min-height: 80px; } .answer-btn { font-size: 1em; padding: 12px; } }
       /* ================ COLE ESTE BLOCO NO FINAL DO SEU CSS ================ */
-
-/* ================ COLE ESTE NOVO CSS ================ */
-
-/* O contêiner principal para login/cadastro */
+ /* O contêiner principal para login/cadastro */
 #auth-container {
     width: 100%;
     max-width: 450px; /* Define uma largura máxima elegante */
@@ -187,11 +184,25 @@
     font-size: 1.5em; /* Título um pouco maior */
 }
 
-/* Faz os inputs ocuparem 100% da largura */
+/* ESTA REGRA SUBSTITUI A ANTERIOR PARA .player-name-input */
 #auth-container .player-name-input {
     width: 100%;
     margin: 8px 0;
-    box-sizing: border-box; /* Impede que o padding quebre o layout */
+    box-sizing: border-box; 
+    
+    /* ▼ ESTILO ATUALIZADO (COMO NA IMAGEM) ▼ */
+    background-color: #ffffff;  /* Fundo branco */
+    color: #222222;            /* Texto escuro */
+    border: none;               /* Sem borda */
+    border-radius: 8px;         /* Bordas arredondadas */
+    padding: 14px;              /* Mais padding interno */
+    font-size: 1.1em;
+    font-family: 'Oswald', sans-serif;
+}
+
+/* Estilo do texto "E-mail", "Senha", "Nome" (o placeholder) */
+#auth-container .player-name-input::placeholder {
+    color: #888; /* Cor cinza para o placeholder */
 }
 
 /* Faz os botões ocuparem 100% da largura */
