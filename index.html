@@ -764,55 +764,79 @@ document.addEventListener('DOMContentLoaded', function() {
     // Gerenciador de Login (Ouve o Firebase)
    // ================ SUBSTITUA O SEU onAuthStateChanged POR ESTE ================
 
+// SUBSTITUA O SEU onAuthStateChanged POR ESTE
 auth.onAuthStateChanged((user) => {
-    // Referências aos containers principais
+    // Referências (você já deve ter isso)
     const authContainer = document.getElementById('auth-container');
     const userArea = document.getElementById('user-area');
     const userEmailDisplay = document.getElementById('user-email-display');
     const subjectSelection = document.getElementById('subject-selection-container');
-    const shopAndRankingBtns = document.querySelectorAll('#shop-btn, #ranking-btn'); // Seleciona ambos os botões
+    const shopAndRankingBtns = document.querySelectorAll('#shop-btn, #ranking-btn'); 
+    
+    // Referências dos formulários (você já deve ter isso)
+    const loginForm = document.getElementById('login-form');
+    const createForm = document.getElementById('create-form');
 
     if (user) {
         // O usuário ESTÁ logado
+        
+        // ▼ LÓGICA DO NOME ATUALIZADA ▼
+        // Pega o "Nome" (displayName) do perfil. Se não existir, usa o e-mail.
+        const nomeDoJogador = user.displayName || user.email; 
+        
         usuarioAtual = user;
-        gameState.playerName = user.email; // Salva o e-mail
+        gameState.playerName = nomeDoJogador; // Salva o NOME (e não o e-mail)
 
-        // Esconde os formulários de login/cadastro
         if(authContainer) authContainer.style.display = 'none'; 
         
-        // Mostra a área do usuário logado e os botões de jogo
         if(userArea) userArea.style.display = 'block';
-        if(userEmailDisplay) userEmailDisplay.textContent = `Logado como: ${user.email}`;
-        if(subjectSelection) subjectSelection.style.display = 'grid'; // Mostra matérias
-        shopAndRankingBtns.forEach(btn => btn.style.display = 'inline-block'); // Mostra Loja/Ranking
+        if(userEmailDisplay) userEmailDisplay.textContent = `Logado como: ${nomeDoJogador}`; // Mostra o NOME
+        if(subjectSelection) subjectSelection.style.display = 'grid'; 
+        shopAndRankingBtns.forEach(btn => btn.style.display = 'inline-block'); 
 
-        elements.playerNameInput.value = user.email; // (Compatibilidade)
+        elements.playerNameInput.value = nomeDoJogador; // (Compatibilidade)
 
     } else {
         // O usuário NÃO está logado
         usuarioAtual = null;
         gameState.playerName = '';
 
-        // Mostra o container de login
-        if(authContainer) authContainer.style.display = 'block'; 
-        // Garante que o formulário de LOGIN seja o padrão
-        if(loginForm) loginForm.style.display = 'block';
-        if(createForm) createForm.style.display = 'none';
+         if(authContainer) authContainer.style.display = 'block'; 
+         if(loginForm) loginForm.style.display = 'block';
+         if(createForm) createForm.style.display = 'none';
         
-        // Esconde a área do usuário logado e os botões de jogo
-        if(userArea) userArea.style.display = 'none';
-        if(subjectSelection) subjectSelection.style.display = 'none'; // Esconde matérias
-        shopAndRankingBtns.forEach(btn => btn.style.display = 'none'); // Esconde Loja/Ranking
+         if(userArea) userArea.style.display = 'none';
+         if(subjectSelection) subjectSelection.style.display = 'none'; 
+        shopAndRankingBtns.forEach(btn => btn.style.display = 'none'); 
     }
 });
+   function criarConta() {
+    // 1. Pega os três valores
+    const nome = document.getElementById("criar-nome").value;
+    const email = document.getElementById("criar-email").value;
+    const senha = document.getElementById("criar-senha").value;
 
-    function criarConta() {
-        const email = document.getElementById("criar-email").value;
-        const senha = document.getElementById("criar-senha").value;
-        auth.createUserWithEmailAndPassword(email, senha)
-            .then(() => alert("Conta criada com sucesso!"))
-            .catch(e => alert("Erro ao criar conta: " + e.message));
+    // 2. Validação simples do nome
+    if (!nome) {
+        alert("Por favor, digite seu nome.");
+        return;
     }
+
+    // 3. Cria o usuário no Firebase
+    auth.createUserWithEmailAndPassword(email, senha)
+        .then((userCredential) => {
+            
+            // 4. ATUALIZA O PERFIL do usuário com o nome
+            return userCredential.user.updateProfile({
+                displayName: nome // Salva o nome no perfil do usuário
+            });
+        })
+        .then(() => {
+            alert("Conta criada com sucesso! Você será logado.");
+            // O auth.onAuthStateChanged vai cuidar do resto
+        })
+        .catch(e => alert("Erro ao criar conta: " + e.message));
+}
 
     function fazerLogin() {
         const email = document.getElementById("login-email").value;
