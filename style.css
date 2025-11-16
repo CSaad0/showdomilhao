@@ -172,49 +172,51 @@
         @media (max-width: 768px) { #main-content-area { flex-direction: column-reverse; } #question-container { font-size: 1.2em; min-height: 80px; } .answer-btn { font-size: 1em; padding: 12px; } }
       /* ================ COLE ESTE BLOCO NO FINAL DO SEU CSS ================ */
 
-/* Estiliza os novos inputs de e-mail e senha */
-#auth-forms input[type="email"],
-#auth-forms input[type="password"] {
-    padding: 12px;
-    font-size: 1.1em;
-    border-radius: 8px;
-    border: 2px solid #3b82f6;
-    background-color: #0c1a54;
-    color: white;
-    font-family: 'Oswald', sans-serif; /* Garante a fonte correta */
-    margin: 5px 0; /* Espaçamento */
+/* ================ COLE ESTE NOVO CSS ================ */
+
+/* O contêiner principal para login/cadastro */
+#auth-container {
+    width: 100%;
+    max-width: 450px; /* Define uma largura máxima elegante */
+    margin: 0 auto;   /* Centraliza o bloco */
 }
 
-#auth-forms input::placeholder {
+#auth-container h3 {
+    color: #facc15;
+    margin-bottom: 15px;
+    font-size: 1.5em; /* Título um pouco maior */
+}
+
+/* Faz os inputs ocuparem 100% da largura */
+#auth-container .player-name-input {
+    width: 100%;
+    margin: 8px 0;
+    box-sizing: border-box; /* Impede que o padding quebre o layout */
+}
+
+/* Faz os botões ocuparem 100% da largura */
+#auth-container .subject-btn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px 20px;
+}
+
+/* Estilo do texto "Não tem conta?" */
+.auth-toggle-text {
+    margin-top: 25px;
+    font-size: 1em;
     color: #ccc;
+    text-align: center;
 }
 
-/* Ajusta os botões de login/criar */
-#auth-forms .subject-btn {
-    padding: 12px 20px; /* Padding menor que os botões de matéria */
-    font-size: 1.1em;   /* Fonte um pouco menor */
-    margin-left: 10px;
-    vertical-align: middle; /* Alinha o botão com os inputs */
+/* Estilo do link "Criar conta" */
+.auth-toggle-link {
+    color: #facc15; /* Cor de destaque amarela */
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
-/* Organiza os formulários de login/cadastro */
-#auth-forms > div {
-    display: flex;
-    flex-wrap: wrap; /* Permite quebrar a linha em telas pequenas */
-    justify-content: center;
-    align-items: center;
-    gap: 5px 10px; /* Espaçamento */
-}
-
-#auth-forms h3 {
-    width: 100%; /* Faz o "Criar Conta" / "Fazer Login" ocupar a linha toda */
-    color: #facc15; /* Cor amarela */
-    margin-bottom: 10px;
-}
-
-/* Estiliza a linha horizontal */
-#auth-forms hr {
-    border: none;
-    border-top: 2px solid rgba(255, 255, 255, 0.1);
-    margin: 25px 0;
+.auth-toggle-link:hover {
+    color: #f59e0b; /* Amarelo mais escuro ao passar o mouse */
 }

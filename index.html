@@ -21,20 +21,28 @@
     <h1>Show do Milhão</h1>
     <p>Faça login ou crie uma conta para jogar!</p>
 
-   <div id="auth-forms">
-    <div style="margin-top: 15px;"> 
+<div id="auth-container">
+
+    <div id="login-form">
         <h3>Fazer Login</h3>
         <input type="email" id="login-email" placeholder="E-mail" class="player-name-input">
-        <input type="password" id="login-senha" placeholder="Senha" class="player-name-input" style="margin-top: 5px;">
-        <button id="btn-login" class="subject-btn" style="margin-top: 10px;">Entrar</button>
+        <input type="password" id="login-senha" placeholder="Senha" class="player-name-input">
+        <button id="btn-login" class="subject-btn">Entrar</button>
+        <p class="auth-toggle-text">
+            Não tem uma conta? <span id="show-create-btn" class="auth-toggle-link">Criar conta</span>
+        </p>
     </div>
-    
-    <hr> <div style="margin-bottom: 15px;"> 
+
+    <div id="create-form" style="display: none;">
         <h3>Criar Conta</h3>
         <input type="email" id="criar-email" placeholder="E-mail" class="player-name-input">
-        <input type="password" id="criar-senha" placeholder="Senha" class="player-name-input" style="margin-top: 5px;">
-        <button id="btn-criar-conta" class="subject-btn" style="margin-top: 10px;">Criar</button>
+        <input type="password" id="criar-senha" placeholder="Senha" class="player-name-input">
+        <button id="btn-criar-conta" class="subject-btn">Criar</button>
+        <p class="auth-toggle-text">
+            Já tem uma conta? <span id="show-login-btn" class="auth-toggle-link">Fazer login</span>
+        </p>
     </div>
+
 </div>
     
     <div id="user-area" style="display: none;">
@@ -751,32 +759,50 @@ document.addEventListener('DOMContentLoaded', function() {
         userEmailDisplay: document.getElementById('user-email-display')
     };
     
-    // ... seu código 'allQuestions' ...
-    // ... seu código 'gameState' ...
-
-    // ================== NOVO CÓDIGO DE LOGIN ==================
-
     // Gerenciador de Login (Ouve o Firebase)
-    auth.onAuthStateChanged((user) => {
-        if (user) {
-            // Usuário está logado
-            usuarioAtual = user;
-            gameState.playerName = user.email; // Salva o e-mail como nome do jogador
-            
-            elements.authForms.style.display = 'none'; // Esconde formulários
-            elements.userArea.style.display = 'block'; // Mostra área do usuário
-            elements.userEmailDisplay.textContent = `Logado como: ${user.email}`;
-            elements.playerNameInput.value = user.email; // (Compatibilidade com seu código antigo)
+   // ================ SUBSTITUA O SEU onAuthStateChanged POR ESTE ================
 
-        } else {
-            // Usuário está deslogado
-            usuarioAtual = null;
-            gameState.playerName = '';
-            
-            elements.authForms.style.display = 'block'; // Mostra formulários
-            elements.userArea.style.display = 'none';   // Esconde área do usuário
-        }
-    });
+auth.onAuthStateChanged((user) => {
+    // Referências aos containers principais
+    const authContainer = document.getElementById('auth-container');
+    const userArea = document.getElementById('user-area');
+    const userEmailDisplay = document.getElementById('user-email-display');
+    const subjectSelection = document.getElementById('subject-selection-container');
+    const shopAndRankingBtns = document.querySelectorAll('#shop-btn, #ranking-btn'); // Seleciona ambos os botões
+
+    if (user) {
+        // O usuário ESTÁ logado
+        usuarioAtual = user;
+        gameState.playerName = user.email; // Salva o e-mail
+
+        // Esconde os formulários de login/cadastro
+        if(authContainer) authContainer.style.display = 'none'; 
+        
+        // Mostra a área do usuário logado e os botões de jogo
+        if(userArea) userArea.style.display = 'block';
+        if(userEmailDisplay) userEmailDisplay.textContent = `Logado como: ${user.email}`;
+        if(subjectSelection) subjectSelection.style.display = 'grid'; // Mostra matérias
+        shopAndRankingBtns.forEach(btn => btn.style.display = 'inline-block'); // Mostra Loja/Ranking
+
+        elements.playerNameInput.value = user.email; // (Compatibilidade)
+
+    } else {
+        // O usuário NÃO está logado
+        usuarioAtual = null;
+        gameState.playerName = '';
+
+        // Mostra o container de login
+        if(authContainer) authContainer.style.display = 'block'; 
+        // Garante que o formulário de LOGIN seja o padrão
+        if(loginForm) loginForm.style.display = 'block';
+        if(createForm) createForm.style.display = 'none';
+        
+        // Esconde a área do usuário logado e os botões de jogo
+        if(userArea) userArea.style.display = 'none';
+        if(subjectSelection) subjectSelection.style.display = 'none'; // Esconde matérias
+        shopAndRankingBtns.forEach(btn => btn.style.display = 'none'); // Esconde Loja/Ranking
+    }
+});
 
     function criarConta() {
         const email = document.getElementById("criar-email").value;
@@ -803,6 +829,25 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById("btn-login").addEventListener("click", fazerLogin);
     document.getElementById("btn-logout").addEventListener("click", fazerLogout);
     // ...todo o seu código de jogo de 1000 linhas...
+});
+
+
+// Referências para os formulários e botões de troca
+const loginForm = document.getElementById('login-form');
+const createForm = document.getElementById('create-form');
+const showCreateBtn = document.getElementById('show-create-btn');
+const showLoginBtn = document.getElementById('show-login-btn');
+
+// Ouvinte para mostrar "Criar Conta"
+showCreateBtn.addEventListener('click', () => {
+    loginForm.style.display = 'none';
+    createForm.style.display = 'block';
+});
+
+// Ouvinte para mostrar "Fazer Login"
+showLoginBtn.addEventListener('click', () => {
+    loginForm.style.display = 'block';
+    createForm.style.display = 'none';
 });
 </script>
 
