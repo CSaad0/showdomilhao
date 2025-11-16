@@ -761,36 +761,38 @@ document.addEventListener('DOMContentLoaded', function() {
         userEmailDisplay: document.getElementById('user-email-display')
     };
     
-    // Gerenciador de Login (Ouve o Firebase)
-   // ================ SUBSTITUA O SEU onAuthStateChanged POR ESTE ================
-
+    
 // SUBSTITUA O SEU onAuthStateChanged POR ESTE
 auth.onAuthStateChanged((user) => {
-    // Referências (você já deve ter isso)
+    
+    // Referências aos containers principais
     const authContainer = document.getElementById('auth-container');
     const userArea = document.getElementById('user-area');
     const userEmailDisplay = document.getElementById('user-email-display');
     const subjectSelection = document.getElementById('subject-selection-container');
     const shopAndRankingBtns = document.querySelectorAll('#shop-btn, #ranking-btn'); 
     
-    // Referências dos formulários (você já deve ter isso)
+    // Referências dos formulários de login/criação
     const loginForm = document.getElementById('login-form');
     const createForm = document.getElementById('create-form');
 
     if (user) {
         // O usuário ESTÁ logado
         
-        // ▼ LÓGICA DO NOME ATUALIZADA ▼
         // Pega o "Nome" (displayName) do perfil. Se não existir, usa o e-mail.
         const nomeDoJogador = user.displayName || user.email; 
         
         usuarioAtual = user;
-        gameState.playerName = nomeDoJogador; // Salva o NOME (e não o e-mail)
+        gameState.playerName = nomeDoJogador; // Salva o NOME
 
+        // ▼ ESCONDE ▼ os formulários de login
         if(authContainer) authContainer.style.display = 'none'; 
         
+        // ► MOSTRA ► a área do usuário logado
         if(userArea) userArea.style.display = 'block';
-        if(userEmailDisplay) userEmailDisplay.textContent = `Logado como: ${nomeDoJogador}`; // Mostra o NOME
+        if(userEmailDisplay) userEmailDisplay.textContent = `Bem vindo(a), ${nomeDoJogador}!`; // O TEXTO CORRETO
+        
+        // ► MOSTRA ► as matérias e botões de jogo
         if(subjectSelection) subjectSelection.style.display = 'grid'; 
         shopAndRankingBtns.forEach(btn => btn.style.display = 'inline-block'); 
 
@@ -801,12 +803,14 @@ auth.onAuthStateChanged((user) => {
         usuarioAtual = null;
         gameState.playerName = '';
 
-         if(authContainer) authContainer.style.display = 'block'; 
-         if(loginForm) loginForm.style.display = 'block';
-         if(createForm) createForm.style.display = 'none';
+        // ► MOSTRA ► o container de login
+        if(authContainer) authContainer.style.display = 'block'; 
+        if(loginForm) loginForm.style.display = 'block';
+        if(createForm) createForm.style.display = 'none';
         
-         if(userArea) userArea.style.display = 'none';
-         if(subjectSelection) subjectSelection.style.display = 'none'; 
+        // ▼ ESCONDE ▼ a área do usuário e as matérias
+        if(userArea) userArea.style.display = 'none';
+        if(subjectSelection) subjectSelection.style.display = 'none'; 
         shopAndRankingBtns.forEach(btn => btn.style.display = 'none'); 
     }
 });
@@ -839,12 +843,17 @@ auth.onAuthStateChanged((user) => {
 }
 
     function fazerLogin() {
-        const email = document.getElementById("login-email").value;
-        const senha = document.getElementById("login-senha").value;
-        auth.signInWithEmailAndPassword(email, senha)
-            .then(() => alert("Bem-vindo(a) de volta!"))
-            .catch(e => alert("Erro ao fazer login: " + e.message));
-    }
+    const email = document.getElementById("login-email").value;
+    const senha = document.getElementById("login-senha").value;
+
+    auth.signInWithEmailAndPassword(email, senha)
+        .then(() => {
+            // SUCESSO! Não faça nada aqui.
+            // O 'onAuthStateChanged' vai cuidar de tudo.
+            console.log("Login OK, aguardando onAuthStateChanged...");
+        })
+        .catch(e => alert("Erro ao fazer login: " + e.message)); // Deixe o .catch
+}
 
     function fazerLogout() {
         auth.signOut().then(() => alert("Você saiu."));
