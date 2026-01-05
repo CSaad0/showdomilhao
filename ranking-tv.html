@@ -1,68 +1,413 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <link rel="stylesheet" href="style.css">
-    <title>Ranking ao Vivo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏆 Ranking Ao Vivo - Show do Milhão</title>
     <style>
-        body { background-color: #222; color: white; font-family: Arial; }
-        h1 { font-size: 4rem; color: #FFD700; text-align: center; }
-        #lista-ranking { list-style: none; padding: 0; font-size: 2rem; }
-        #lista-ranking li { background: #333; margin: 10px; padding: 15px; border-radius: 8px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Arial Black', Arial, sans-serif; 
+            background: linear-gradient(135deg, #0c1a54 0%, #1e3a8a 100%);
+            color: white; 
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        #background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .container {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: slideDown 1s ease-out;
+        }
+        
+        h1 { 
+            font-size: 4rem; 
+            color: #facc15; 
+            text-shadow: 0 0 20px rgba(250, 204, 21, 0.5);
+            margin-bottom: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: #93c5fd;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        #connection-status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        #connection-status.connected {
+            background-color: #22c55e;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+        }
+        
+        #connection-status.disconnected {
+            background-color: #ef4444;
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+        }
+        
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: white;
+            animation: blink 1.5s infinite;
+        }
+        
+        #ranking-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+            gap: 20px;
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+            padding: 10px;
+        }
+        
+        .ranking-item {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.8) 0%, rgba(12, 26, 84, 0.8) 100%);
+            border: 3px solid #3b82f6;
+            border-radius: 15px;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            transition: all 0.3s ease;
+            animation: slideIn 0.5s ease-out;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .ranking-item:hover {
+            transform: scale(1.02);
+            border-color: #facc15;
+            box-shadow: 0 8px 25px rgba(250, 204, 21, 0.3);
+        }
+        
+        .ranking-item.top-1 {
+            background: linear-gradient(135deg, rgba(250, 204, 21, 0.3) 0%, rgba(251, 191, 36, 0.2) 100%);
+            border-color: #facc15;
+            box-shadow: 0 0 30px rgba(250, 204, 21, 0.5);
+        }
+        
+        .ranking-item.top-2 {
+            background: linear-gradient(135deg, rgba(192, 192, 192, 0.3) 0%, rgba(156, 163, 175, 0.2) 100%);
+            border-color: #d1d5db;
+        }
+        
+        .ranking-item.top-3 {
+            background: linear-gradient(135deg, rgba(205, 127, 50, 0.3) 0%, rgba(180, 83, 9, 0.2) 100%);
+            border-color: #cd7f32;
+        }
+        
+        .position {
+            font-size: 3rem;
+            font-weight: bold;
+            min-width: 80px;
+            text-align: center;
+            color: #facc15;
+            text-shadow: 0 0 10px rgba(250, 204, 21, 0.5);
+        }
+        
+        .top-1 .position { font-size: 4rem; }
+        .top-2 .position { font-size: 3.5rem; }
+        
+        .trophy {
+            font-size: 3rem;
+            margin-right: 10px;
+        }
+        
+        .player-info {
+            flex: 1;
+        }
+        
+        .player-name {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+        
+        .player-score {
+            font-size: 1.5rem;
+            color: #facc15;
+            font-weight: bold;
+        }
+        
+        .timestamp {
+            font-size: 0.9rem;
+            color: #93c5fd;
+            margin-top: 5px;
+        }
+        
+        #empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        #empty-state .icon {
+            font-size: 6rem;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+        
+        #empty-state h2 {
+            font-size: 2.5rem;
+            color: #93c5fd;
+            margin-bottom: 10px;
+        }
+        
+        #empty-state p {
+            font-size: 1.3rem;
+            color: #cbd5e1;
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        #ranking-container::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        #ranking-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        
+        #ranking-container::-webkit-scrollbar-thumb {
+            background: #facc15;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
-    <h1>RANKING EM TEMPO REAL</h1>
-    <ul id="lista-ranking">
-        <li>Carregando...</li>
-    </ul>
-
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <canvas id="background-animation"></canvas>
     
+    <div id="connection-status" class="disconnected">
+        <span class="status-dot"></span>
+        <span id="status-text">Conectando...</span>
+    </div>
+    
+    <div class="container">
+        <header>
+            <h1>🏆 RANKING AO VIVO 🏆</h1>
+            <p class="subtitle">Show do Milhão</p>
+        </header>
+        
+        <div id="ranking-container">
+            <div id="empty-state">
+                <div class="icon">🎮</div>
+                <h2>Aguardando Jogadores...</h2>
+                <p>Os resultados aparecerão aqui em tempo real!</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
     <script>
-        // ======= COLE O MESMO firebaseConfig AQUI ========
-        const firebaseConfig = {
-            apiKey: "AIza...",
-            authDomain: "seu-jogo.firebaseapp.com",
-            // ...etc
-        };
-        // =============================================
+        const canvas = document.getElementById('background-animation');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-        // Inicializar Firebase
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-
-        // --- Função de Ler o Ranking ---
-        function carregarRankingParaTV() {
-            const rankingElement = document.getElementById("lista-ranking");
-
-            db.collection("ranking")
-              .orderBy("pontos", "desc") // Ordena do maior para o menor
-              .limit(10) // Pega só os 10 primeiros
-              .onSnapshot((querySnapshot) => { // A MÁGICA DO TEMPO REAL
-                  
-                  console.log("Ranking atualizado!");
-                  
-                  // Limpa o ranking antigo
-                  rankingElement.innerHTML = "";
-                  
-                  if (querySnapshot.empty) {
-                      rankingElement.innerHTML = "<li>Aguardando jogadores...</li>";
-                      return;
-                  }
-
-                  // Adiciona os novos itens
-                  querySnapshot.forEach((doc) => {
-                      const dados = doc.data();
-                      const item = document.createElement("li");
-                      item.textContent = `${dados.nome}: ${dados.pontos} pontos`;
-                      rankingElement.appendChild(item);
-                  });
-              });
+        const particles = [];
+        for (let i = 0; i < 50; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 3 + 1,
+                speedX: (Math.random() - 0.5) * 2,
+                speedY: (Math.random() - 0.5) * 2
+            });
         }
 
-        // Inicia o carregamento
-        carregarRankingParaTV();
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(250, 204, 21, 0.5)';
+            
+            particles.forEach(particle => {
+                particle.x += particle.speedX;
+                particle.y += particle.speedY;
+                
+                if (particle.x < 0 || particle.x > canvas.width) particle.speedX *= -1;
+                if (particle.y < 0 || particle.y > canvas.height) particle.speedY *= -1;
+                
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                ctx.fill();
+            });
+            
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Detecta ambiente
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const serverUrl = isLocalhost ? 'http://localhost:3000' : null;
+        
+        const statusElement = document.getElementById('connection-status');
+        const statusText = document.getElementById('status-text');
+        const rankingContainer = document.getElementById('ranking-container');
+        
+        let socket = null;
+        
+        // Se estiver no GitHub Pages, usa localStorage ao invés de servidor
+        if (!serverUrl) {
+            statusElement.className = 'connected';
+            statusText.textContent = 'Modo GitHub Pages (Local) ✓';
+            loadLocalRanking();
+            // Atualiza a cada 3 segundos
+            setInterval(loadLocalRanking, 3000);
+        } else {
+            // Modo com servidor (localhost)
+            socket = io(serverUrl);
+
+            socket.on('connect', () => {
+                console.log('Conectado ao servidor!');
+                statusElement.className = 'connected';
+                statusText.textContent = 'Conectado ✓';
+            });
+
+            socket.on('disconnect', () => {
+                console.log('Desconectado do servidor!');
+                statusElement.className = 'disconnected';
+                statusText.textContent = 'Desconectado ✗';
+            });
+
+            socket.on('ranking-update', (ranking) => {
+                console.log('Ranking atualizado:', ranking);
+                renderRanking(ranking);
+            });
+        }
+
+        function renderRanking(ranking) {
+            if (!ranking || ranking.length === 0) {
+                rankingContainer.innerHTML = `
+                    <div id="empty-state">
+                        <div class="icon">🎮</div>
+                        <h2>Aguardando Jogadores...</h2>
+                        <p>Os resultados aparecerão aqui em tempo real!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            rankingContainer.innerHTML = ranking.map((entry, index) => {
+                const position = index + 1;
+                let trophy = '';
+                let positionClass = '';
+                
+                if (position === 1) {
+                    trophy = '🥇';
+                    positionClass = 'top-1';
+                } else if (position === 2) {
+                    trophy = '🥈';
+                    positionClass = 'top-2';
+                } else if (position === 3) {
+                    trophy = '🥉';
+                    positionClass = 'top-3';
+                }
+
+                const date = new Date(entry.timestamp);
+                const timeStr = date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+
+                return `
+                    <div class="ranking-item ${positionClass}" style="animation-delay: ${index * 0.1}s">
+                        <div class="position">
+                            <span class="trophy">${trophy}</span>
+                            ${position}º
+                        </div>
+                        <div class="player-info">
+                            <div class="player-name">${entry.name}</div>
+                            <div class="player-score">R$ ${entry.score.toLocaleString('pt-BR')}</div>
+                            <div class="timestamp">⏱️ ${timeStr}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Função para carregar ranking do sessionStorage (modo GitHub Pages)
+        function loadLocalRanking() {
+            const ranking = JSON.parse(sessionStorage.getItem('showDoMilhaoRanking')) || [];
+            const formattedRanking = ranking.map(entry => ({
+                name: entry.name,
+                score: entry.score,
+                timestamp: new Date().toISOString()
+            }));
+            renderRanking(formattedRanking);
+        }
+        
+        // Buscar ranking inicial (apenas se tiver servidor)
+        if (serverUrl) {
+            fetch(serverUrl + '/api/ranking')
+                .then(res => res.json())
+                .then(ranking => renderRanking(ranking))
+                .catch(err => console.error('Erro ao buscar ranking:', err));
+        }
     </script>
 </body>
 </html>
