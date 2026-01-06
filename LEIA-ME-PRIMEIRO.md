@@ -8,7 +8,7 @@
 
 ### Como Funciona:
 - Jogo hospedado no GitHub (gratuito)
-- Link: `https://seu-usuario.github.io/show-do-milhao/`
+- Link: `https://csaad0.github.io/show-do-milhao/`
 - Funciona em qualquer dispositivo com internet
 - Ranking salvo localmente em cada navegador
 

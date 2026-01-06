@@ -42,8 +42,8 @@ git add .
 # Faz o primeiro commit
 git commit -m "Show do Milhão - Versão inicial"
 
-# Conecta ao seu repositório (SUBSTITUA SEU-USUARIO)
-git remote add origin https://github.com/SEU-USUARIO/show-do-milhao.git
+# Conecta ao seu repositório
+git remote add origin https://github.com/CSaad0/show-do-milhao.git
 
 # Envia para o GitHub
 git push -u origin main
@@ -67,7 +67,7 @@ git push -u origin main
 
 Seu jogo estará disponível em:
 ```
-https://SEU-USUARIO.github.io/show-do-milhao/
+https://csaad0.github.io/show-do-milhao/
 ```
 
 ---
@@ -164,7 +164,7 @@ git push -u origin main
 
 Depois de publicar, você pode:
 
-1. **Enviar o link:** `https://seu-usuario.github.io/show-do-milhao/`
+1. **Enviar o link:** `https://csaad0.github.io/show-do-milhao/`
 
 2. **Criar QR Code:**
    - Acesse: https://www.qr-code-generator.com/

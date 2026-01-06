@@ -27,7 +27,7 @@ Jogo educativo estilo "Show do Milhão" com perguntas de:
 ## 🚀 Como Jogar Online
 
 **Jogue agora:**
-[Clique aqui para jogar](https://SEU-USUARIO.github.io/show-do-milhao/)
+[Clique aqui para jogar](https://csaad0.github.io/show-do-milhao/)
 
 1. Digite seu nome
 2. Escolha uma matéria
@@ -99,7 +99,7 @@ Projeto educacional de código aberto.
 
 ## 👨‍💻 Desenvolvido por
 
-Aluno do Colégio [Nome do Colégio]
+Aluno do CEP (Colégio)
 Mostra de Curso - 2026
 
 ---

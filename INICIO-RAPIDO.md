@@ -6,7 +6,7 @@
 
 ```
 1. Publique no GitHub Pages (veja DEPLOY-GITHUB.md)
-2. Compartilhe o link: https://seu-usuario.github.io/show-do-milhao/
+2. Compartilhe o link: https://csaad0.github.io/show-do-milhao/
 3. Cada aluno joga no próprio celular/tablet
 4. Ranking é individual (não compartilhado)
 ```
